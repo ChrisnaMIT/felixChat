@@ -10,16 +10,18 @@ html, body{
 
 }
 .chat{
-    display: none
+    display: none;
 }
 
 
 .felix{
-    color: purple;
+    color: midnightblue;
+    font-size: 25px;
 }
 
 .user{
-    color: green;
+    color: fuchsia;
+    font-size: 25px;
 }
 
 .containerLogin{
@@ -81,3 +83,109 @@ html, body{
     height: 30px;
     width: 55px;
 }
+
+.bigDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.containerChat{
+    background-image: url("../image/japon2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.decoChat{
+    border: 1px solid #ffffff83;
+    border-radius: 5px;
+    backdrop-filter: blur(5px);
+    height: 100%;
+    width: 1500px;
+    display: grid;
+    grid-template-columns: 200px auto 800px auto ;
+
+
+
+
+
+}
+
+.felix{
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+
+}
+
+.imageFelix{
+    height: 100px;
+    width: 100px;
+    border-radius: 60px;
+    padding-top: 10px;
+}
+
+.frameChat{
+   /* border: 1px solid yellow; */
+    width: 527px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 40px;
+
+
+}
+
+.messages{
+    /* border: 1px solid red; */
+    width: 900px;
+    height: 700px;
+    overflow-y: auto;
+
+}
+
+.prompt{
+    width: 250px;
+    height: 20px;
+    border-radius: 100px;
+}
+
+
+.chatSubmit{
+    border-radius: 4px;
+    width: 80px;
+    height: 30px;
+}
+.imageCamera{
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    color: white;
+
+
+}
+
+.chatForm{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+}
+
+.separation{
+    border-left: 2px solid steelblue;
+    display: inline-block;
+    height: 770px;
+    margin: 20px 20px;
+
+}
+
+.allEmoji{
+    display: none;
+}
+

@@ -3,22 +3,39 @@ const loginPage = document.querySelector('.login')
 const chatPage = document.querySelector('.chat')
 const containterLogin = document.querySelector('.containerLogin')
 const containerChat =  document.querySelector('.containerChat')
+const decoChat = document.querySelector('.decoChat')
+const emojiButton = document.querySelector('.emojiButton')
+const allEmoji = document.querySelector('.allEmoji')
 
 let premierMessageIa = {
     author : "Felix",
     content : "Bonjour je suis l'IA"
 }
-let premierMessageUser = {
-    author : "Jean-michel",
-    content : "bonjour je suis jean-michel. Quel est la couleur du ciel ?",
-}
-let deuxiemeMessageIa = {
-    author : "Felix",
-    content : "Quelle est ta question ?"
-}
+//let premierMessageUser = {
+    //author : "Jean-michel",
+  //  content : "bonjour je suis jean-michel. Quel est la couleur du ciel ?",
+//}
+//let deuxiemeMessageIa = {
+    //author : "Felix",
+  //  content : "Quelle est ta question ?"
+//}
+
+emojiButton.addEventListener("click",(e) =>{
+    allEmoji.classList.toggle('allEmoji');
+    if (e.target.classList.contains('allEmoji')){
+        messages.value += e.target.textContent;
+    }
+});
 
 
-let messages = [premierMessageIa, premierMessageUser, deuxiemeMessageIa]
+
+
+
+
+
+
+
+let messages = [premierMessageIa]
 async function login(username, password){
     console.log(username, password)
     let params = {
@@ -41,11 +58,13 @@ async function login(username, password){
 }
 
 
-
+//----------------------------------------------------
 function displayLoginForm(){
 
     loginPage.style.display = 'block'
     chatPage.style.display = 'none'
+    containerChat.style.display= 'none'
+
 
     let username = document.querySelector('.username')
     let password = document.querySelector('.password')
@@ -59,7 +78,7 @@ function displayLoginForm(){
         })
     })
 }
-
+//--------------------------------------------------------
 function displayMessages(){
     document.querySelector('.messages').innerHTML = ""
     messages.forEach(message => {
@@ -84,7 +103,7 @@ function displayMessages(){
 
 
 }
-
+//--------------------------------------------------------------------
 function handlePrompt(){
     let prompt = document.querySelector('.prompt')
     let submitButton = document.querySelector('.chatSubmit')
@@ -95,7 +114,7 @@ function handlePrompt(){
             content:prompt.value
         })
         displayMessages()
-
+        prompt.value = ''
 
         askIa(prompt.value).then((data) => {
             console.log(data)
@@ -107,7 +126,7 @@ function handlePrompt(){
         })
     })
 }
-
+//--------------------------------------------------------
 async function askIa(prompt)
 {
     let params = {
