@@ -6,6 +6,11 @@ const containerChat =  document.querySelector('.containerChat')
 const decoChat = document.querySelector('.decoChat')
 const emojiButton = document.querySelector('.emojiButton')
 const allEmoji = document.querySelector('.allEmoji')
+const loading = document.querySelector('.loading')
+const imageFelix = document.querySelector('.imageFelix')
+
+
+
 
 let premierMessageIa = {
     author : "Felix",
@@ -20,13 +25,20 @@ let premierMessageIa = {
   //  content : "Quelle est ta question ?"
 //}
 
+
 emojiButton.addEventListener("click",(e) =>{
     allEmoji.classList.toggle('allEmoji');
-    if (e.target.classList.contains('allEmoji')){
+    if (e.target.classList.contains('allEmoji')) {
         messages.value += e.target.textContent;
     }
 });
 
+
+
+let messageInEnglish = {
+    author : "Felix",
+    content : "We can speak in English now"
+}
 
 
 
@@ -64,6 +76,7 @@ function displayLoginForm(){
     loginPage.style.display = 'block'
     chatPage.style.display = 'none'
     containerChat.style.display= 'none'
+    loading.style.display = 'none'
 
 
     let username = document.querySelector('.username')
@@ -107,14 +120,26 @@ function displayMessages(){
 function handlePrompt(){
     let prompt = document.querySelector('.prompt')
     let submitButton = document.querySelector('.chatSubmit')
+    const buttonAnglais = document.querySelector('.buttonAnglais')
+
 
     submitButton.addEventListener('click', ()=>{
         addMessageToMessagesArray({
             author : "User",
             content:prompt.value
+
         })
+    buttonAnglais.addEventListener('click', () =>{
+        console.log('message en anglais')
+        addMessageToMessagesArray({
+            author: "Felix",
+            content : messageInEnglish.value
+        })
+    })
+
         displayMessages()
         prompt.value = ''
+
 
         askIa(prompt.value).then((data) => {
             console.log(data)
@@ -126,7 +151,28 @@ function handlePrompt(){
         })
     })
 }
+
+
+
+//function englishMessage (){
+    //buttonAnglais.addEventListener('click', () => {
+       // console.log('message en anglais')
+      //  displayMessages()
+
+       // askIa(messageInEnglish).then((data) => {
+
+           // addMessageToMessagesArray({
+            //    author : "Felix",
+            //    content: data
+          //  })
+           // displayMessages()
+        //})
+    //})
+//}
+
+
 //--------------------------------------------------------
+
 async function askIa(prompt)
 {
     let params = {
@@ -139,13 +185,27 @@ async function askIa(prompt)
             prompt: prompt,
         })
     }
+
+
+    loading.style.display = 'block'
+
+
     return await fetch('https://felix.esdlyon.dev/ollama', params)
         .then(response => response.json())
         .then((json) => {
+
             console.log(json)
+            loading.style.display = 'none'
             return json.message
+
         })
+
 }
+
+
+
+
+
 
 function addMessageToMessagesArray(message)
 {
@@ -161,6 +221,7 @@ function displayChat(){
     displayMessages()
     handlePrompt()
 }
+
 
 
 
